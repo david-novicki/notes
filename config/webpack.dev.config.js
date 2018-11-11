@@ -52,5 +52,8 @@ module.exports = {
     new ServiceWorkerWebpackPlugin({
       entry: srcFolder + "/service-worker.js"
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };

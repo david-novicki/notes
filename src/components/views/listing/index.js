@@ -1,24 +1,27 @@
-import React, { Component } from "react";
-import { container } from "./style.css";
+import React from "react";
+import { listingContainer } from "./styles.css";
+import history from "../../../utilities/history";
 
-const tempNotes = [
-  {
-    title: "note 1",
-    body:
-      "asdfasdfasdf asdf asdf asdf asdfasdf asdfas dfa sdfasdf asdf as asdfasdfas df."
-  }
-];
+// Components
+import NoteItem from "./components/note-list-item";
 
-export default class ListingView extends Component {
-  constructor() {
-    super();
+export default ({ notes = [] } = {}) => {
+  const onLoadNote = id => {
+    history.push(`/${id}`);
+  };
 
-    this.state = {
-      notes: tempNotes
-    };
-  }
+  const createNewNote = () => {
+    console.log("Create new note");
+  };
 
-  render() {
-    return <div className={container}>listing</div>;
-  }
-}
+  const NoteList = notes.map(note => (
+    <NoteItem key={`_note_item_${note.id}`} {...note} onClick={onLoadNote} />
+  ));
+
+  return (
+    <div className={listingContainer}>
+      {NoteList}
+      <NoteItem title="Create Note" onClick={createNewNote} />
+    </div>
+  );
+};
