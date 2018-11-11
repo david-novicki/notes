@@ -1,0 +1,16 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "Notes app as a Progressive Web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "PWA",
+    "Notes",
+    "Javascript"
+  ],
+  "author": "David Novicki <supercycle91@gmail.com>",
+  "license": "ISC"
+}
