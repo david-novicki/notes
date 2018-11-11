@@ -6,6 +6,7 @@
   "scripts": {
     "test-server": "cd build/ && python -m SimpleHTTPServer 8000",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --hot --port 3000 --config config/webpack.dev.config.js",
     "build": "webpack --config config/webpack.dev.config.js"
   },
   "keywords": [
@@ -21,15 +22,19 @@
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
-    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
-    "serviceworker-webpack-plugin": "^1.0.1",
+    "style-loader": "^0.23.1",
     "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "clean-webpack-plugin": "^0.1.19",
+    "serviceworker-webpack-plugin": "^1.0.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "react": "^16.6.1",
-    "react-dom": "^16.6.1"
+    "react-dom": "^16.6.1",
+    "react-hot-loader": "^4.3.12"
   }
 }
