@@ -1,27 +1,15 @@
 import React from "react";
-import { listingContainer } from "./styles.css";
-import history from "../../../utilities/history";
 
 // Components
 import NoteItem from "./components/note-list-item";
 
-export default ({ notes = [] } = {}) => {
-  const onLoadNote = id => {
-    history.push(`/${id}`);
-  };
-
-  const createNewNote = () => {
-    console.log("Create new note");
-  };
-
-  const NoteList = notes.map(note => (
-    <NoteItem key={`_note_item_${note.id}`} {...note} onClick={onLoadNote} />
-  ));
+export default ({ notes = [], onLoadNote, onCreateNote, activeNoteId } = {}) => {
+  const NoteList = notes.map(note => <NoteItem key={`_note_item_${note.id}`} {...note} onClick={onLoadNote} active={activeNoteId === note.id} />);
 
   return (
-    <div className={listingContainer}>
+    <div className="p-3">
       {NoteList}
-      <NoteItem title="Create Note" onClick={createNewNote} />
+      <NoteItem title="Create Note" onClick={onCreateNote} />
     </div>
   );
 };

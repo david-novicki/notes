@@ -13,28 +13,41 @@ class App extends Component {
 
     this.state = {
       notes: MOCK_DATA.notes,
-      activeNote: null
+      activeNoteId: MOCK_DATA.notes[0].id,
+      activeNote: MOCK_DATA.notes[0]
     };
+
+    this.onLoadNote = this.onLoadNote.bind(this);
+    this.onCreateNote = this.onCreateNote.bind(this);
+    this.onEditNote = this.onEditNote.bind(this);
   }
 
-  componentWillReceiveProps({ history }) {
-    this.onLocationChange(history.location);
+  onLoadNote(activeNoteId) {
+    const { notes } = this.state;
+    const activeNote = notes.find(({ id }) => id === activeNoteId);
+    this.setState({ activeNoteId, activeNote });
   }
 
-  onLocationChange(nextLocation) {
-    const { history } = this.props;
-    console.log(history.location.pathname, nextLocation.pathname);
+  onCreateNote() {
+    const newNote = MOCK_DATA.createNewNote({ title: "New Note" });
+    this.setState({ notes: [...this.state.notes, newNote] });
+  }
 
-    if (nextLocation.pathname !== history.location.pathname)
-      console.log("route changed!");
+  onEditNote({ target: { name, value } }) {
+    const { activeNote, notes } = this.state;
+    const changedActiveNote = { ...activeNote, [name]: value };
+    const persistentNoteI = notes.findIndex(({ id }) => activeNote.id === id);
+    notes[persistentNoteI] = changedActiveNote;
+    this.setState({ activeNote: changedActiveNote, notes });
   }
 
   render() {
-    const { notes, activeNote } = this.state;
+    const { state, onLoadNote, onCreateNote, onEditNote } = this;
+    const { notes, activeNote, activeNoteId } = state;
     return (
-      <div className="d-flex">
-        <ListingView {...{ notes }} />
-        <DetailView note={activeNote} />
+      <div className="d-flex w-100 h-100">
+        <ListingView {...{ notes, onLoadNote, onCreateNote, activeNoteId }} />
+        <DetailView note={activeNote} {...{ onCreateNote, onEditNote }} />
       </div>
     );
   }
