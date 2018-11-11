@@ -1,10 +1,15 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin");
 const path = require("path");
+const buildFolder = path.resolve(__dirname, "../build");
+const srcFolder = path.resolve(__dirname, "../src");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: srcFolder + "/index.js",
+  mode: "development",
   output: {
-    path: path.resolve(__dirname, "../build"),
+    path: buildFolder,
     filename: "[name].[hash].js"
   },
   module: {
@@ -37,9 +42,15 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin([buildFolder], {
+      allowExternal: true
+    }),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, "../public/index.html"),
       filename: "./index.html"
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: srcFolder + "/service-worker.js"
     })
   ]
 };
