@@ -12,7 +12,7 @@
     "Notes",
     "Javascript"
   ],
-  "author": "David Novicki <supercycle91@gmail.com>",
+  "author": "Gage Langdon and David Novicki <supercycle91@gmail.com> <gagelangdon@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
