@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Editor, EditorState } from "draft-js";
 
+// https://draftjs.org/docs/getting-started
+
 export default class BodyEditor extends Component {
   constructor() {
     super();

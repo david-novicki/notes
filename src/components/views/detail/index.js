@@ -13,7 +13,6 @@ export default ({ note, onEditNote }) => {
       <input className={`h4 ${noBorder}`} name="title" onChange={onEditNote} value={title} />
       <span className="text-muted">{dateCreated}</span>
       <Body value={body} name="body" onChange={onEditNote} />
-      {/* <textarea className={`mt-3 w-100 h-100 ${noBorder}`} name="body" value={body} onChange={onEditNote} /> */}
     </div>
   );
 };

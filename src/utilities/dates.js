@@ -5,7 +5,7 @@ const format = jsDate => {
   const monthIndex = jsDate.getMonth();
   const year = jsDate.getFullYear();
 
-  return day + " " + monthNames[monthIndex] + " " + year;
+  return `${monthNames[monthIndex]} ${day} ${year}`;
 };
 
 export default { format };
